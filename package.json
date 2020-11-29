@@ -1,0 +1,30 @@
+{
+  "name": "vue-ssr-demo",
+  "version": "0.1.0",
+  "description": "Vue SSR 示例代码",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon demo10/server.js",
+    "build:client": "webpack --config demo11-vue-server-bundle-render/build/webpack.client.config.js --progress",
+    "build:server": "webpack --config demo11-vue-server-bundle-render/build/webpack.server.config.js --progress",
+    "build:demo12": "webpack --config demo12-vue-server-client-build/webpack.client.config.js --progress",
+    "build": "npm run build:client && npm run build:server"
+  },
+  "author": "xut",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.9",
+    "vue-server-renderer": "^2.6.12",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "vue-loader": "^15.9.5",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^3.8.1"
+  }
+}

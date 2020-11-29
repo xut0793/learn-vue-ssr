@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+  <meta charset="UTF-8">
+  <title>vue demo</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script>
+
+const ComList = Vue.extend({
+  name: 'ComList',
+  data() {
+    return {
+      title: 'demo4: vue 客户端渲染',
+      list: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+    }
+  },
+  template: `<div>
+    <h1>{{ title }}</h1>
+    <ul>
+      <li v-for="(item, index) in list" :key="item">列表{{ index }}: {{ item }}</li>
+    </ul>
+  </div>`
+})
+
+  // 主应用
+  const app = new Vue({
+    el: '#app',
+    components: {
+      ComList,
+    },
+    template: `<div>
+      <h1>Vue SPA</h1>
+      <com-List />
+    </div>`
+  })
+</script>
+</html>

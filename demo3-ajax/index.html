@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax</title>
+</head>
+<body>
+  <h1>demo3: 前端Ajax请求数据并渲染</h1>
+  <ul id="container"></ul>
+  <h2>Counter 计数器</h2>
+  <div>
+    <button id="minus">-</button>
+    <span id="number">0</span>
+    <button id="plus">+</button>
+  </div>
+</body>
+<script>
+function initContent(data) {
+  const elContainer = document.querySelector('#container')
+  let elLiStr = ""
+  
+  if (Array.isArray(data)) {
+    for (let i = 0, len = data.length; i < len; i++) {
+      elLiStr += `<li>列表${i+1}: ${data[i]}</li>`
+    }
+  } else {
+    elLiStr = `<li>${data}</li>`
+  }
+  elContainer.innerHTML = elLiStr
+}
+
+function getInitData() {
+  // 第一种：XMLHttpRequest
+  // function handleResponseData() {
+  //   if (this.status == 200) {
+  //     const data = this.response
+  //     initContent(data)
+  //   }
+  // }
+  // const xhr = new XMLHttpRequest()
+  // xhr.addEventListener('load', handleResponseData)
+  // xhr.open('GET', '/api')
+  // xhr.responseType = 'json'
+  // xhr.send()
+
+  // 第二种：fetch
+  fetch('/api').then(res => {
+    return res.json()
+  }).then(data => {
+    initContent(data)
+  }).catch(err => {
+    console.error(err);
+  })
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  getInitData()
+});
+</script>
+<script>
+  const minus = document.querySelector('#minus')
+  const plus = document.querySelector('#plus')
+  const number = document.querySelector('#number')
+
+  minus.addEventListener('click', function() {
+    number.textContent = Number(number.textContent) -1
+  })
+  plus.addEventListener('click', function() {
+    number.textContent = Number(number.textContent) + 1
+  })
+</script>
+</html>

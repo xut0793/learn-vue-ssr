@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ejs render</title>
+</head>
+<body>
+  <h1><%= title %> </h1>
+  <ul>
+    <% list.forEach((item, index) => { %>
+    <li>列表<%= index  %>: <%= item %>  </li>
+    <% }) %>
+  </ul>
+  <h2>Counter 计数器</h2>
+  <div>
+    <button id="minus">-</button>
+    <span id="number">0</span>
+    <button id="plus">+</button>
+  </div>
+</body>
+<script>
+  const minus = document.querySelector('#minus')
+  const plus = document.querySelector('#plus')
+  const number = document.querySelector('#number')
+
+  minus.addEventListener('click', function() {
+    number.textContent = Number(number.textContent) -1
+  })
+  plus.addEventListener('click', function() {
+    number.textContent = Number(number.textContent) + 1
+  })
+</script>
+</html>
